@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NetCoreDemo.Models;
 using NetCoreDemo.Data;
-
 namespace NetCoreDemo.Controllers
 {
     public class MoviesController : Controller
@@ -19,11 +18,39 @@ namespace NetCoreDemo.Controllers
             _context = context;
         }
 
+         // GET: Movie
         // GET: Movies
-        public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string movieGenre, string SearchString)
+    {
+        // sử dụng LinQ để select ra Genre.
+        IQueryable<string> genreQuery = from m in _context.Movie
+                                        orderby m.Genre
+                                        select m.Genre;
+
+        // sử dụng LinQ để select ra danh sách bản ghi Movie trong database.
+        var movies = from m in _context.Movie
+                    select m;
+
+        if (!string.IsNullOrEmpty(SearchString))
         {
-            return View(await _context.Movie.ToListAsync());
+            movies = movies.Where(s => s.Title.Contains(SearchString));
         }
+
+        if (!string.IsNullOrEmpty(movieGenre))
+        {
+            movies = movies.Where(x => x.Genre == movieGenre);
+        }
+
+        var movieGenreVM = new MovieGenreViewModel
+        {
+            Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
+            Movies = await movies.ToListAsync()
+        };
+        
+        return View(movieGenreVM);
+    }
+
+        
 
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -54,7 +81,7 @@ namespace NetCoreDemo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +113,7 @@ namespace NetCoreDemo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
         {
             if (id != movie.Id)
             {
