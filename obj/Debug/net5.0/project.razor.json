@@ -15624,8 +15624,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Teacher\\Create.cshtml",
+      "TargetPath": "Views\\Teacher\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\SinhVien\\Create.cshtml",
+      "TargetPath": "Views\\SinhVien\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Product\\Delete.cshtml",
       "TargetPath": "Views\\Product\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\NhanVien\\Create.cshtml",
+      "TargetPath": "Views\\NhanVien\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15649,6 +15664,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\HoaDon\\Index.cshtml",
+      "TargetPath": "Views\\HoaDon\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Product\\Create.cshtml",
       "TargetPath": "Views\\Product\\Create.cshtml",
       "FileKind": "mvc"
@@ -15659,8 +15679,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\LuongBong\\Details.cshtml",
+      "TargetPath": "Views\\LuongBong\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\SinhVien\\Index.cshtml",
+      "TargetPath": "Views\\SinhVien\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\NhanVien\\Edit.cshtml",
+      "TargetPath": "Views\\NhanVien\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Employee\\Edit.cshtml",
       "TargetPath": "Views\\Employee\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\HoaDon\\Edit.cshtml",
+      "TargetPath": "Views\\HoaDon\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15669,8 +15709,43 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\HoaDon\\Create.cshtml",
+      "TargetPath": "Views\\HoaDon\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\KhachHang\\Details.cshtml",
+      "TargetPath": "Views\\KhachHang\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Product\\Details.cshtml",
       "TargetPath": "Views\\Product\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\LuongBong\\Delete.cshtml",
+      "TargetPath": "Views\\LuongBong\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\KhachHang\\Create.cshtml",
+      "TargetPath": "Views\\KhachHang\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\KhachHang\\Delete.cshtml",
+      "TargetPath": "Views\\KhachHang\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\NhanVien\\Delete.cshtml",
+      "TargetPath": "Views\\NhanVien\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Teacher\\Delete.cshtml",
+      "TargetPath": "Views\\Teacher\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15689,6 +15764,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\HoaDon\\Details.cshtml",
+      "TargetPath": "Views\\HoaDon\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\SinhVien\\Delete.cshtml",
+      "TargetPath": "Views\\SinhVien\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Person\\Index.cshtml",
       "TargetPath": "Views\\Person\\Index.cshtml",
       "FileKind": "mvc"
@@ -15699,8 +15784,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\HoaDon\\Delete.cshtml",
+      "TargetPath": "Views\\HoaDon\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\KhachHang\\Index.cshtml",
+      "TargetPath": "Views\\KhachHang\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\LuongBong\\Edit.cshtml",
+      "TargetPath": "Views\\LuongBong\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Person\\Delete.cshtml",
       "TargetPath": "Views\\Person\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\NhanVien\\Index.cshtml",
+      "TargetPath": "Views\\NhanVien\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\SinhVien\\Details.cshtml",
+      "TargetPath": "Views\\SinhVien\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15711,6 +15821,11 @@
     {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Shared\\_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\SinhVien\\Edit.cshtml",
+      "TargetPath": "Views\\SinhVien\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15744,6 +15859,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\KhachHang\\Edit.cshtml",
+      "TargetPath": "Views\\KhachHang\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Person\\Details.cshtml",
       "TargetPath": "Views\\Person\\Details.cshtml",
       "FileKind": "mvc"
@@ -15751,6 +15871,11 @@
     {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\NhanVien\\Details.cshtml",
+      "TargetPath": "Views\\NhanVien\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -15769,6 +15894,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\LuongBong\\Create.cshtml",
+      "TargetPath": "Views\\LuongBong\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Teacher\\Edit.cshtml",
+      "TargetPath": "Views\\Teacher\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Movies\\Edit.cshtml",
       "TargetPath": "Views\\Movies\\Edit.cshtml",
       "FileKind": "mvc"
@@ -15779,6 +15914,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\LuongBong\\Index.cshtml",
+      "TargetPath": "Views\\LuongBong\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Student\\Index.cshtml",
       "TargetPath": "Views\\Student\\Index.cshtml",
       "FileKind": "mvc"
@@ -15786,6 +15926,16 @@
     {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Shared\\Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Teacher\\Details.cshtml",
+      "TargetPath": "Views\\Teacher\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Teacher\\Index.cshtml",
+      "TargetPath": "Views\\Teacher\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

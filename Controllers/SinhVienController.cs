@@ -12,6 +12,7 @@ namespace NetCoreDemo.Controllers
 {
     public class SinhVienController : Controller
     {
+        private readonly Process strPro = new Process();
         private readonly NetCoreDbContext _context;
 
         public SinhVienController(NetCoreDbContext context)
@@ -46,6 +47,13 @@ namespace NetCoreDemo.Controllers
         // GET: SinhVien/Create
         public IActionResult Create()
         {
+                var model = _context.SinhVien.ToList();  
+            if (model.Count()==0) ViewBag.SinhVienID = "AB001";
+            else {
+                var newKey = model.OrderByDescending(m => m.SinhVienID).FirstOrDefault().SinhVienID;
+                ViewBag.SinhVienID = strPro.GenerateKey(newKey);
+           } 
+
             return View();
         }
 
