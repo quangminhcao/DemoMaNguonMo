@@ -1,4 +1,6 @@
+using System.Security.AccessControl;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,16 +9,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NetCoreDemo.Models;
 using NetCoreDemo.Data;
+using Microsoft.AspNetCore.Http;
+using ExamResult.Models.Process;
+using System.IO;
+using Microsoft.Extensions.Configuration;
+using System.Data.SqlClient;
+
 namespace NetCoreDemo.Controllers
 {
     public class MoviesController : Controller
     {
         private readonly NetCoreDbContext _context;
+        private ExcelProcess _excelPro = new ExcelProcess();
 
-        public MoviesController(NetCoreDbContext context)
+        public MoviesController(NetCoreDbContext context, IConfiguration configuration)
         {
             _context = context;
+            Configuration = configuration;
         }
+        public IConfiguration Configuration{get;}
 
          // GET: Movie
         // GET: Movies
@@ -81,15 +92,69 @@ namespace NetCoreDemo.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        public async Task<IActionResult> Create(IFormFile file, [Bind("Id", "Title", "ReleaseDate", "Genre", "Price", "Rating")] Movie movie)
         {
-            if (ModelState.IsValid)
+            if (file!=null)
             {
-                _context.Add(movie);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                 string fileExtension = Path.GetExtension(file.FileName);
+                if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("", "Please choose excel file to upload!");
+                }
+                else
+                {
+                    //rename file when upload to server
+                    //tao duong dan /Uploads/Excels de luu file upload len server
+                    var fileName = "Movie";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/Uploads/Excels", fileName + fileExtension);
+                    var fileLocation = new FileInfo(filePath).ToString();
+
+                    if (ModelState.IsValid)
+                    {
+                        //upload file to server
+                        if (file.Length > 0)
+                        {
+                            _context.Add(movie);
+                            await _context.SaveChangesAsync();
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                //save file to server
+                                await file.CopyToAsync(stream);
+                                //read data from file and write to database
+                                //_excelPro la doi tuong xu ly file excel ExcelProcess
+                                var dt = _excelPro.ExcelToDataTable(fileLocation);
+                                //ghi du lieu datatable vao database
+                                // Write informatics Movie result
+                                WriteInformaticsResults(dt);
+
+                            }
+                            return RedirectToAction(nameof(Index));
+                        }
+                    }
+                }
             }
-            return View(movie);
+            return View();
+        }
+
+        private int WriteInformaticsResults(DataTable dt){
+            try
+            {
+                var con = Configuration.GetConnectionString("ApplicationDBContext");
+                SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
+                bulkcopy.DestinationTableName = "Movies";
+                bulkcopy.ColumnMappings.Add(0, "Id");
+                bulkcopy.ColumnMappings.Add(1, "Title");
+                bulkcopy.ColumnMappings.Add(2, "ReleaseDate");
+                bulkcopy.ColumnMappings.Add(3, "Price");
+                bulkcopy.ColumnMappings.Add(4, "Genre");
+                bulkcopy.ColumnMappings.Add(5, "Rating");
+                bulkcopy.WriteToServer(dt);
+            }
+            catch{
+
+                return 0;
+            }
+            return dt.Rows.Count;
         }
 
         // GET: Movies/Edit/5

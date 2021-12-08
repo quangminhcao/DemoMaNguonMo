@@ -37,8 +37,10 @@
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div>
+                <label>Upload here</label>
+                <input name="file" type="file" class="form-control">
+                @* name (IFormfile file) đã dc khai báo ở Controller *@
             </div>
         </form>
     </div>

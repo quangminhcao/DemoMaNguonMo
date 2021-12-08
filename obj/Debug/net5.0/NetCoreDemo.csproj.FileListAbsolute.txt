@@ -222,3 +222,11 @@ E:\NetCoreDemo\NetCoreDemo\obj\Debug\net5.0\Razor\Views\SinhVien\Delete.cshtml.g
 E:\NetCoreDemo\NetCoreDemo\obj\Debug\net5.0\Razor\Views\SinhVien\Details.cshtml.g.cs
 E:\NetCoreDemo\NetCoreDemo\obj\Debug\net5.0\Razor\Views\SinhVien\Edit.cshtml.g.cs
 E:\NetCoreDemo\NetCoreDemo\obj\Debug\net5.0\Razor\Views\SinhVien\Index.cshtml.g.cs
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\EPPlus.Core.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\System.Data.SqlClient.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\runtimes\win-arm64\native\sni.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\runtimes\win-x64\native\sni.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\runtimes\unix\lib\netstandard2.0\System.Data.SqlClient.dll
+E:\NetCoreDemo\NetCoreDemo\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Data.SqlClient.dll
