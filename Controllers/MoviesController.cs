@@ -139,7 +139,7 @@ namespace NetCoreDemo.Controllers
         private int WriteInformaticsResults(DataTable dt){
             try
             {
-                var con = Configuration.GetConnectionString("ApplicationDBContext");
+                var con = Configuration.GetConnectionString("NetCoreDbContext");
                 SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
                 bulkcopy.DestinationTableName = "Movies";
                 bulkcopy.ColumnMappings.Add(0, "Id");
