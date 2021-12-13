@@ -15669,6 +15669,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Movies\\UploadFile.cshtml",
+      "TargetPath": "Views\\Movies\\UploadFile.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\NetCoreDemo\\NetCoreDemo\\Views\\Product\\Create.cshtml",
       "TargetPath": "Views\\Product\\Create.cshtml",
       "FileKind": "mvc"

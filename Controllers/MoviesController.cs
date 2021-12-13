@@ -10,10 +10,10 @@ using Microsoft.EntityFrameworkCore;
 using NetCoreDemo.Models;
 using NetCoreDemo.Data;
 using Microsoft.AspNetCore.Http;
-using ExamResult.Models.Process;
 using System.IO;
-using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using ExamResult.Models.Process;
 
 namespace NetCoreDemo.Controllers
 {
@@ -27,7 +27,7 @@ namespace NetCoreDemo.Controllers
             _context = context;
             Configuration = configuration;
         }
-        public IConfiguration Configuration{get;}
+        public IConfiguration Configuration {get;}
 
          // GET: Movie
         // GET: Movies
@@ -61,6 +61,67 @@ namespace NetCoreDemo.Controllers
         return View(movieGenreVM);
     }
 
+
+        public IActionResult UploadFile(){
+            return View();
+        }
+        [HttpPost]
+        public IActionResult UploadFile(IFormFile file){
+            if (file!=null)
+            {
+                string fileExtension = Path.GetExtension(file.FileName);
+                if (fileExtension != ".xls" && fileExtension != ".xlsx")
+                {
+                    ModelState.AddModelError("", "Chọn đúng File: "+ fileExtension);
+                }
+                    else
+                {
+                    //rename file when upload to server
+                    //tao duong dan /Uploads/Excels de luu file upload len server
+                    var fileName = "Movie";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory() + "/UploadsExcels", fileName + fileExtension);
+                    var fileLocation = new FileInfo(filePath).ToString();
+
+                    if (ModelState.IsValid)
+                    {
+                        //upload file to server
+                        if (file.Length > 0)
+                        {
+                            using (var stream = new FileStream(filePath,FileMode.Open, FileAccess.Read, FileShare.Read))
+                            {
+                                //save file to server
+                                file.CopyToAsync(stream);
+                                //read data from file and write to database
+                                //_excelPro la doi tuong xu ly file excel ExcelProcess
+                                var dt = _excelPro.ExcelToDataTable(fileLocation);
+                                //ghi du lieu datatable vao database
+                                //var sobanghithanhcong = WriteDatatableToDatabase(dt);
+                                for(int i = 0; i< dt.Rows.Count; i++){
+                                    var movies = new Movie();
+                                    movies.Id = Convert.ToInt32(dt.Rows[i][0].ToString());
+                                    movies.Title = dt.Rows[i][1].ToString();
+                                    movies.ReleaseDate = Convert.ToDateTime(dt.Rows[i][2].ToString());
+                                    movies.Price = Convert.ToDecimal(dt.Rows[i][3].ToString());
+                                    movies.Genre = dt.Rows[i][4].ToString();
+                                    movies.Rating = dt.Rows[i][5].ToString();
+                                    _context.Add(movies);
+                                }
+                                _context.SaveChanges();
+                                var sobanghithanhcong = dt.Rows.Count;
+                                ModelState.AddModelError("", "Ghi thanh cong du lieu, bao gom: " + sobanghithanhcong + " ban ghi");
+                                
+                            }
+                            //return RedirectToAction(nameof(UploadFile));
+                        }
+                    }
+                }
+                
+                
+                
+            }
+                return View();
+        }
+
         
 
         // GET: Movies/Details/5
@@ -86,17 +147,15 @@ namespace NetCoreDemo.Controllers
         {
             return View();
         }
-
-        // POST: Movies/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(IFormFile file, [Bind("Id", "Title", "ReleaseDate", "Genre", "Price", "Rating")] Movie movie)
+        public async Task<IActionResult> Create(IFormFile file)
         {
+            
             if (file!=null)
             {
-                 string fileExtension = Path.GetExtension(file.FileName);
+              
+                string fileExtension = Path.GetExtension(file.FileName);
                 if (fileExtension != ".xls" && fileExtension != ".xlsx")
                 {
                     ModelState.AddModelError("", "Please choose excel file to upload!");
@@ -114,9 +173,7 @@ namespace NetCoreDemo.Controllers
                         //upload file to server
                         if (file.Length > 0)
                         {
-                            _context.Add(movie);
-                            await _context.SaveChangesAsync();
-                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            using (var stream = new FileStream(filePath,FileMode.Open, FileAccess.Read, FileShare.Read))
                             {
                                 //save file to server
                                 await file.CopyToAsync(stream);
@@ -124,37 +181,33 @@ namespace NetCoreDemo.Controllers
                                 //_excelPro la doi tuong xu ly file excel ExcelProcess
                                 var dt = _excelPro.ExcelToDataTable(fileLocation);
                                 //ghi du lieu datatable vao database
-                                // Write informatics Movie result
-                                WriteInformaticsResults(dt);
-
+                                
                             }
                             return RedirectToAction(nameof(Index));
                         }
                     }
                 }
             }
+            else {
+                 ModelState.AddModelError("", "Chọn đúng file!");
+            }
             return View();
         }
 
-        private int WriteInformaticsResults(DataTable dt){
-            try
+        // POST: Movies/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] Movie movie)
+        {
+            if (ModelState.IsValid)
             {
-                var con = Configuration.GetConnectionString("NetCoreDbContext");
-                SqlBulkCopy bulkcopy = new SqlBulkCopy(con);
-                bulkcopy.DestinationTableName = "Movies";
-                bulkcopy.ColumnMappings.Add(0, "Id");
-                bulkcopy.ColumnMappings.Add(1, "Title");
-                bulkcopy.ColumnMappings.Add(2, "ReleaseDate");
-                bulkcopy.ColumnMappings.Add(3, "Price");
-                bulkcopy.ColumnMappings.Add(4, "Genre");
-                bulkcopy.ColumnMappings.Add(5, "Rating");
-                bulkcopy.WriteToServer(dt);
+                _context.Add(movie);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
             }
-            catch{
-
-                return 0;
-            }
-            return dt.Rows.Count;
+            return View(movie);
         }
 
         // GET: Movies/Edit/5
@@ -241,5 +294,23 @@ namespace NetCoreDemo.Controllers
         {
             return _context.Movie.Any(e => e.Id == id);
         }
+        // private int WriteDatatableToDatabase (DataTable dt){
+        //    // try{
+        //         var con = Configuration.GetConnectionString("NetCoreDbContext");
+        //         SqlBulkCopy bulkcopy = new SqlBulkCopy (con);
+        //         bulkcopy.DestinationTableName = "Movies";
+        //         bulkcopy.ColumnMappings.Add(0, "Title");
+        //         bulkcopy.ColumnMappings.Add(1, "ReleaseDate");
+        //         bulkcopy.ColumnMappings.Add(2, "Price");
+        //         bulkcopy.ColumnMappings.Add(3, "Genre");
+        //         bulkcopy.ColumnMappings.Add(4, "Rating");
+        //         bulkcopy.WriteToServer (dt);
+        //     // }
+        //     // catch{
+        //     //     return 0;
+        //     // }
+        //     return dt.Rows.Count;
+        // }
     }
+    
 }
